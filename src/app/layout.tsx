@@ -25,7 +25,7 @@ export default async function RootLayout({
   const defaultTheme = (cookiesStore.get('theme')?.value || 'light') as Theme;
 
   return (
-    <html lang='en'>
+    <html lang='en' className={defaultTheme}>
       <body className={'antialiased'}>
         <Toaster position='top-right' />
         <Providers defaultTheme={defaultTheme}>{children}</Providers>

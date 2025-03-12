@@ -1,9 +1,12 @@
-import { Episode } from "@/models/episodes";
+import { Episode } from '@/models/episodes';
 
 export const getEpisode = async (url: string): Promise<Episode> => {
-  const response = await fetch(url);
+  const response = await fetch(url, { cache: 'no-store' });
+
   if (!response.ok) {
-    throw new Error('Error fetching episode');
+    const id = url.split('/').pop();
+    throw new Error(`Error fetching episode: ${id}`);
   }
+
   return response.json();
 };
