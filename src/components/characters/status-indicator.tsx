@@ -17,7 +17,7 @@ export function StatusIndicator({ status }: { status: Character['status'] }) {
   return (
     <div className='relative'>
       {status === 'Alive' && (
-        <div className='absolute inset-0 rounded-full animate-ping bg-green-400 opacity-75'></div>
+        <div className='absolute duration-[1500ms] inset-0 rounded-full animate-ping bg-green-400 opacity-75'></div>
       )}
       <div
         className={cn(

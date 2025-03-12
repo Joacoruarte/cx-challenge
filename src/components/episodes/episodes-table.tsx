@@ -59,7 +59,7 @@ export default function EpisodesTable({
           />
         </div>
       )}
-      <div className='divide-y divide-indigo-100 max-h-[400px] overflow-y-auto'>
+      <div className='divide-y divide-indigo-100 max-h-[450px] overflow-y-auto min-h-[450px]'>
         {loading ? (
           Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className='p-[1.15rem] animate-pulse'>
@@ -68,7 +68,7 @@ export default function EpisodesTable({
             </div>
           ))
         ) : renderedEpisodes.length === 0 ? (
-          <div className='p-3 min-h-[400px] flex items-center justify-center text-center text-gray-500 dark:text-gray-400'>
+          <div className='p-3 min-h-[450px] flex items-center justify-center text-center text-gray-500 dark:text-gray-400'>
             {noDataMessage || 'No episodes found'}
           </div>
         ) : (

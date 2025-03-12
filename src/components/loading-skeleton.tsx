@@ -1,8 +1,10 @@
+'use client'
 import React from 'react';
 import { Navbar } from './navbar';
 import CharacterCardList from './characters/character-card-list';
 import { Character } from '@/models/character';
 import EpisodesTable from './episodes/episodes-table';
+import { CustomPaginations } from './custom-pagination';
 
 export default function LoadingSkeleton() {
   return (
@@ -16,49 +18,8 @@ export default function LoadingSkeleton() {
         </div>
 
         {/* fake pagination */}
-        <div className='mb-8'>
-          <div className='flex items-center justify-center space-x-1'>
-            <button className='p-2 rounded-md border border-indigo-200 bg-white text-primary hover:bg-indigo-50 disabled:opacity-50 disabled:cursor-not-allowed'>
-              <svg
-                className='w-4 h-4'
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M15 19l-7-7 7-7'
-                />
-              </svg>
-            </button>
-            {Array.from({ length: 5 }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                className='w-8 h-8 rounded-md flex items-center justify-center bg-white text-primary hover:bg-indigo-50 border border-indigo-200'
-              >
-                {page}
-              </button>
-            ))}
-            <button className='p-2 rounded-md border border-indigo-200 bg-white text-primary hover:bg-indigo-50 disabled:opacity-50 disabled:cursor-not-allowed'>
-              <svg
-                className='w-4 h-4'
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M9 5l7 7-7 7'
-                />
-              </svg>
-            </button>
-          </div>
+        <div className='mb-8 pointer-events-none'>
+          <CustomPaginations currentPage={1} totalPages={10} onPageChange={()=> {}} />
         </div>
 
         {/* fake episodes section */}
