@@ -25,9 +25,10 @@ cd cx-challenge
 
 ```bash
 npm install
+```
+Si prefieres usar Bun
 
-# o si prefieres usar Bun
-
+```bash
 bun install
 ```
 
@@ -37,9 +38,10 @@ Para iniciar el servidor de desarrollo, ejecuta el siguiente comando:
 
 ```bash
 npm run dev
+```
+Si prefieres usar Bun
 
-# o si prefieres usar Bun
-
+```bash
 bun dev
 ```
 
