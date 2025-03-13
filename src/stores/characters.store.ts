@@ -2,7 +2,7 @@ import { Character } from '@/models/character';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type CharacterStore = {
+export type CharacterStore = {
   character1: Character | null;
   character2: Character | null;
   setCharacter1: (character: Character | undefined) => void;

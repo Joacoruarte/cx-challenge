@@ -1,9 +1,9 @@
 'use client';
 import { getQueryClient } from '@/lib/get-query-client';
 import { Theme } from '@/lib/theme';
-import { ThemeProvider } from '@/provider/theme-provider';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ThemeProvider } from './theme-provider';
 
 interface ProvidersProps {
   children: React.ReactNode;

@@ -31,7 +31,7 @@ export const setCookie = (
     // Obtén la fecha actual
     const currentDate = new Date();
 
-    // Configura la fecha de expiración a un valor lejano en el futuro (por ejemplo, 1 años)
+    // Configura la fecha de expiración a un valor lejano en el futuro (por ejemplo, 1 año)
     const expirationDate = new Date(
       currentDate.getFullYear() + 1,
       currentDate.getMonth(),

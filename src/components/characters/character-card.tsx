@@ -11,18 +11,16 @@ import CharacterAvatar from './character-avatar';
 
 export function CharacterCard({ character, currentPage }: { character: Character, currentPage?: number }) {
   const [isHovered, setIsHovered] = useState(false);
-  const { character1, character2, setCharacter1, setCharacter2 } =
-    useCharacterStore();
-  const isSelected =
-    character1?.id === character.id || character2?.id === character.id;
+  const { character1, character2, setCharacter1, setCharacter2 } = useCharacterStore();
+  const isSelected = character1?.id === character.id || character2?.id === character.id;
 
-  const handleSelect = () => {
+  const handleSelect = (character: Character, currentPage?: number) => {
     // Si ya está seleccionado, lo removemos
     if (isSelected) {
       if (character1?.id === character.id) return setCharacter1(undefined);
       if (character2?.id === character.id) return setCharacter2(undefined);
     }
-
+    
     // Si hay espacio, lo asignamos al primer slot vacío
     if (!character1) return setCharacter1({ ...character, currentPage });
     if (!character2) return setCharacter2({ ...character, currentPage });
@@ -37,22 +35,24 @@ export function CharacterCard({ character, currentPage }: { character: Character
       className='cursor-pointer relative bg-gradient-to-br from-white to-indigo-50 rounded-lg overflow-visible border border-indigo-100 shadow-sm hover:shadow-md transition-shadow dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-md'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      data-testid={`character-card-${character.id}`}
       onClick={(e) => {
         e.stopPropagation();
-        handleSelect();
+        handleSelect(character, currentPage);
       }}
     >
       {/* Selection indicator */}
       <div
+        data-testid='selection-indicator'
         className={cn(
-          'absolute -top-2 -right-2 transition-all z-10 duration-300 transform',
+          'indicator-container absolute -top-2 -right-2 transition-all z-10 duration-300 transform',
           isSelected ? 'scale-100' : 'scale-0'
         )}
       >
         <div className='relative'>
           <div className='absolute inset-0 bg-primary rounded-full animate-ping opacity-30'></div>
           <div className='relative bg-primary text-white dark:text-black p-1.5 rounded-full'>
-            <Check size={16} />
+            <Check size={16} data-testid="lucide-check"/>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@ export function CharacterCard({ character, currentPage }: { character: Character
               variant='outline'
               className={`mr-2 ${
                 character.status === 'Alive'
-                  ? 'bg-green-100 text-green-800 border-green-200' // pl-5
+                  ? 'bg-green-100 text-green-800 border-green-200'
                   : character.status === 'Dead'
                   ? 'bg-red-100 text-red-800 border-red-200'
                   : 'bg-gray-100 text-gray-800 border-gray-200'
@@ -96,7 +96,7 @@ export function CharacterCard({ character, currentPage }: { character: Character
                 : 'opacity-0 scale-75'
             )}
           >
-            <div className='text-primary hover:text-primary/80 cursor-pointer p-2'>
+            <div className='text-primary hover:text-primary/80 p-2'>
               <Plus size={20} fill={isSelected ? 'currentColor' : 'none'} />
             </div>
           </div>

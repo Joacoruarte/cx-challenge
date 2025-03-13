@@ -10,6 +10,7 @@ import { toast } from 'sonner';
 
 export const useGetSelectedCharactersEpisodes = () => {
   const { character1, character2 } = useCharacterStore();
+  
   const toastShownRef = useRef({
     character1: false,
     character2: false,

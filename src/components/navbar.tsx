@@ -1,6 +1,19 @@
+'use client'
+import { useCharacterStore } from '@/stores/characters.store';
 import ThemeToggle from './toggle-theme';
+import { Button } from './ui/button';
+import { toast } from 'sonner';
 
 export function Navbar() {
+  const { character1, character2, setCharacter1, setCharacter2 } = useCharacterStore()
+  const isNotCharactersSelected = !character1 && !character2
+
+  const resetCharacters = () => {
+    setCharacter1(undefined)
+    setCharacter2(undefined)
+    toast.success('Characters reset')
+  }
+
   return (
     <>
       {/* Modern browser header */}
@@ -13,6 +26,14 @@ export function Navbar() {
         </h1>
 
         <div className='flex space-x-2'>
+          <Button
+            variant={'outline'}
+            className='bg-gradient-to-br from-indigo-500 to-purple-500 text-white dark:from-indigo-400 dark:to-purple-400 hover:text-white cursor-pointer'
+            onClick={resetCharacters}
+            disabled={isNotCharactersSelected}
+          >
+            Reset Characters
+          </Button>
           <ThemeToggle />
         </div>
       </div>

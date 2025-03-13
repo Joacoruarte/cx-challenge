@@ -3,7 +3,7 @@
 import { CharactersSection } from '@/components/characters/characters-section';
 import EpisodesTable from '@/components/episodes/episodes-table';
 import { Navbar } from '@/components/navbar';
-import { useGetSelectedCharactersEpisodes } from '@/hooks/use-get-selected-characters-episodes';
+import { useGetSelectedCharactersEpisodes } from '@/hooks/characters/use-get-selected-characters-episodes';
 import { useCharacterStore } from '@/stores/characters.store';
 
 export default function CharacterComparison({
@@ -50,7 +50,7 @@ export default function CharacterComparison({
             tableHeaderClass='from-purple-500 to-purple-600 '
             noDataMessage={
               hasBothCharacters
-                ? 'No shared episodes'
+                ? 'No shared episodes founded'
                 : 'Select two characters to compare'
             }
           />
@@ -69,8 +69,7 @@ export default function CharacterComparison({
 
       {/* Footer */}
       <div className='bg-white/80 backdrop-blur-md border-t border-indigo-100 p-4 text-center text-sm text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400'>
-        CharacterVerse © 2025 • Compare your favorite characters from TV shows,
-        movies, and more
+        RickAndMortyApp © 2025 • Compare your favorite characters from the show.
       </div>
     </div>
   );

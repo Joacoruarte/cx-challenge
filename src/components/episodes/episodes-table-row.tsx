@@ -12,6 +12,7 @@ export function EpisodesTableRow({
   return (
     <motion.div
       whileHover={{ x: 5 }}
+      data-testid={`episode-row-${episode.id}`}
       className={`p-3 hover:bg-indigo-50 dark:hover:bg-indigo-800 dark:bg-indigo-900 dark:border-gray-700 transition-colors ${
         highlight
           ? 'bg-purple-50 dark:bg-purple-900 dark:hover:bg-purple-800'

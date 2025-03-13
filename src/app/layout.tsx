@@ -2,8 +2,8 @@ import { Theme } from '@/lib/theme';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import './globals.css';
-import Providers from './providers';
 import { Toaster } from 'sonner';
+import Providers from '@/providers/app-providers';
 
 export const metadata: Metadata = {
   title: 'Rick and Morty APP',
@@ -27,7 +27,7 @@ export default async function RootLayout({
   return (
     <html lang='en' className={defaultTheme}>
       <body className={'antialiased'}>
-        <Toaster position='top-right' />
+        <Toaster position='bottom-right' />
         <Providers defaultTheme={defaultTheme}>{children}</Providers>
       </body>
     </html>

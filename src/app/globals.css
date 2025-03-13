@@ -4,12 +4,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@layer base {
-  body {
-    @apply bg-white text-black dark:bg-black dark:text-white;
-  }
-}
-
 :root {
 
   --background: oklch(1 0 0);
@@ -226,6 +220,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-black dark:bg-black dark:text-white;
   }
 }

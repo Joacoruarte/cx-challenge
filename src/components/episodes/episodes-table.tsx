@@ -27,8 +27,9 @@ export default function EpisodesTable({
   const [renderedEpisodes, setRenderedEpisodes] = useState<Episode[]>(episodes);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    setRenderedEpisodes(searchResults(e.target.value, episodes, 'name'));
+    setSearchTerm(e.target.value);    
+    const results = searchResults(e.target.value, episodes, 'name');
+    setRenderedEpisodes(results);
   };
 
   useEffect(() => {
@@ -48,7 +49,9 @@ export default function EpisodesTable({
         >
           <div className='flex flex-col'>
             <p className='font-bold max-w-[200px]'>{tableTitle}</p>
-            <span className='font-light text-sm'>Episodes: {renderedEpisodes?.length}</span>
+            <span className='font-light text-sm'>
+              Episodes: {renderedEpisodes?.length}
+            </span>
           </div>
 
           <Input
@@ -56,6 +59,7 @@ export default function EpisodesTable({
             onChange={handleSearch}
             value={seachTerm}
             className='max-w-[150px] border-indigo-200 focus:border-indigo-500 placeholder:text-gray-300'
+            data-testid='search-episodes'
           />
         </div>
       )}
@@ -67,12 +71,12 @@ export default function EpisodesTable({
               <div className='w-3/4 h-3 bg-indigo-100 dark:bg-gray-700 rounded' />
             </div>
           ))
-        ) : renderedEpisodes.length === 0 ? (
+        ) : renderedEpisodes?.length === 0 ? (
           <div className='p-3 min-h-[450px] flex items-center justify-center text-center text-gray-500 dark:text-gray-400'>
             {noDataMessage || 'No episodes found'}
           </div>
         ) : (
-          renderedEpisodes.map((episode, index) => (
+          renderedEpisodes?.map((episode, index) => (
             <EpisodesTableRow
               key={index}
               episode={episode}

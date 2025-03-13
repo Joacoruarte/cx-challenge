@@ -8,10 +8,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 
-export function CustomPaginations({ currentPage = 1, totalPages = 5, onPageChange }: {
+export function CustomPaginations({ currentPage = 1, totalPages = 5, onPageChange, loading }: {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  loading?: boolean;
 }) {
   // Crear un array de páginas para mostrar
   const getPageNumbers = () => {
@@ -76,6 +77,7 @@ export function CustomPaginations({ currentPage = 1, totalPages = 5, onPageChang
               <PaginationLink 
                 href="#" 
                 isActive={page === currentPage}
+                className={loading ? 'text-transparent' : undefined}
                 onClick={(e) => {
                   e.preventDefault();
                   onPageChange(page as number);
