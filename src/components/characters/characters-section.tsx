@@ -44,7 +44,7 @@ export function CharactersSection({
       )}
 
       <div className='min-h-[610px]'>
-        <div className='flex flex-col md:flex-row gap-8 mb-8 relative w-full'>
+        <div className='flex flex-col md:flex-row gap-8 mb-8 relative w-full min-h-[600px]'>
           <CharacterCardList
             currentPage={Number(page)}
             characters={character1List}
