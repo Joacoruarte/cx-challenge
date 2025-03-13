@@ -48,7 +48,7 @@ export default function EpisodesTable({
           )}
         >
           <div className='flex flex-col'>
-            <p className='font-bold max-w-[200px]'>{tableTitle}</p>
+            <p className='font-bold max-w-[200px] sm:text-sm text-[13px]'>{tableTitle}</p>
             <span className='font-light text-sm'>
               Episodes: {renderedEpisodes?.length}
             </span>
