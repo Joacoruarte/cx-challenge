@@ -2,7 +2,7 @@ export const getCookie = (cookieName: string, customCookies?: string) => {
   if (!cookieName || (typeof window === 'undefined' && !customCookies)) {
     return '';
   }
-  const nombre = cookieName + '=';
+  const name = cookieName + '=';
   const cookies = customCookies
     ? customCookies.split(';')
     : document.cookie.split(';');
@@ -10,8 +10,8 @@ export const getCookie = (cookieName: string, customCookies?: string) => {
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim();
 
-    if (cookie.indexOf(nombre) === 0) {
-      return cookie.substring(nombre.length, cookie.length);
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
     }
   }
 
