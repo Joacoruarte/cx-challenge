@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
+import { Character } from '@/models/character';
 import { Episode } from '@/models/episodes';
 import { getEpisode } from '@/services/get-episode';
 import { useCharacterStore } from '@/stores/characters.store';
-import { useQueries } from '@tanstack/react-query';
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef } from 'react';
 import { toast } from 'sonner';
 
@@ -64,39 +65,22 @@ export const useGetSelectedCharactersEpisodes = () => {
       toastShownRef.current.character2 = false;
     }
 
-    // Character 1 toast
-    if (character1 && character1Episodes.length) {
-      const isSomeData = character1Episodes.some((e) => !!e?.id);
-      const allQueriesSettled = character1EpisodesQueries.every(
+    const showToast = (character: Character | null, characterEpisodes: Episode[], characterEpisodesQueries: UseQueryResult<Episode, Error>[], toastKey: 'character1' | 'character2') => {
+      if (character && characterEpisodes.length) {
+      const isSomeData = characterEpisodes.some((e) => !!e?.id);
+      const allQueriesSettled = characterEpisodesQueries.every(
         (q) => q.isSuccess || q.isError
       );
 
-      if (
-        isSomeData &&
-        allQueriesSettled &&
-        !toastShownRef.current.character1
-      ) {
-        toast.success(`${character1.name}'s episodes loaded`);
-        toastShownRef.current.character1 = true;
+      if (isSomeData && allQueriesSettled && !toastShownRef.current[toastKey]) {
+        toast.success(`${character.name}'s episodes loaded`);
+        toastShownRef.current[toastKey] = true;
       }
-    }
-
-    // Character 2 toast
-    if (character2 && character2Episodes.length) {
-      const isSomeData = character2Episodes.some((e) => !!e?.id);
-      const allQueriesSettled = character2EpisodesQueries.every(
-        (q) => q.isSuccess || q.isError
-      );
-
-      if (
-        isSomeData &&
-        allQueriesSettled &&
-        !toastShownRef.current.character2
-      ) {
-        toast.success(`${character2.name}'s episodes loaded`);
-        toastShownRef.current.character2 = true;
       }
-    }
+    };
+
+    showToast(character1, character1Episodes, character1EpisodesQueries, 'character1');
+    showToast(character2, character2Episodes, character2EpisodesQueries, 'character2');
   }, [character1, character2, character1Episodes, character2Episodes]);
 
   return {
